@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ITStorm_AuthenticationScreen</string>
+    <string name="title_activity_authentication_screen">AuthenticationScreen</string>
+    <string name="logo_image_description">circular progress bar</string>
+    <string name="app_title">NYTIMES</string>
+    <string name="app_version">1.0.41</string>
+</resources>
