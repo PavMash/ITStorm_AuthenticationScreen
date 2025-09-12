@@ -4,4 +4,13 @@
     <string name="logo_image_description">circular progress bar</string>
     <string name="app_title">NYTIMES</string>
     <string name="app_version">1.0.41</string>
+    <string name="login_textfield_label">Логин</string>
+    <string name="password_textfield_label">Пароль</string>
+    <string name="password_visibility_description">password visibility button</string>
+    <string name="enter_button_text">ВОЙТИ</string>
+    <string name="not_cyrillic_letter">Логин пользователя должен быть на кириллице</string>
+    <string name="wrong_login">Неверный логин</string>
+    <string name="no_latin_letters_in_password">Пароль должен содержать хотя бы одну латинскую букву</string>
+    <string name="no_digits_in_password">Пароль должен содержать хотя бы одну цифру</string>
+    <string name="short_password">Пароль должен содержать не менее 6 символов</string>
 </resources>
