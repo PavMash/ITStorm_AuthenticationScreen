@@ -3,6 +3,7 @@ package com.example.itstorm_authenticationscreen
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.core.LinearEasing
@@ -25,7 +26,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -59,6 +63,13 @@ private fun SplashScreen(onTimeout: () -> Unit) {
         delay(2000)
         onTimeout()
     })
+
+    val context = LocalContext.current as ComponentActivity
+    context.enableEdgeToEdge(
+        statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),
+        navigationBarStyle = SystemBarStyle.dark(Color.Black.toArgb())
+    )
+
     Surface(color = Black) {
         Box(modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center) {

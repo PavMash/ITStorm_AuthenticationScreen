@@ -2,6 +2,7 @@ package com.example.itstorm_authenticationscreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
@@ -40,6 +41,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -77,6 +81,13 @@ class AuthenticationScreen : ComponentActivity() {
 
 @Composable
 private fun Authentication() {
+
+    val context = LocalContext.current as ComponentActivity
+    context.enableEdgeToEdge(
+        statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),
+        navigationBarStyle = SystemBarStyle.dark(Color.Black.toArgb())
+    )
+
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally)
