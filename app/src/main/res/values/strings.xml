@@ -1,16 +1,39 @@
 <resources>
+    <!--Component names-->
     <string name="app_name">ITStorm_AuthenticationScreen</string>
     <string name="title_activity_authentication_screen">AuthenticationScreen</string>
-    <string name="logo_image_description">circular progress bar</string>
+    <string name="title_activity_weather_screen">WeatherScreen</string>
+
+    <!--Cross-component elements-->
     <string name="app_title">NYTIMES</string>
+    <string name="logo_image_description">circular progress bar</string>
+    <string name="weather_page_navigation_text">Погода</string>
+    <string name="news_page_navigation_text">Новости</string>
+    <string name="gallery_page_navigation_text">Галерея</string>
+
+    <!--Slash screen-->
     <string name="app_version">1.0.41</string>
+
+    <!--Authentication Screen-->
+    <string name="password_visibility_description">password visibility button</string>
+
     <string name="login_textfield_label">Логин</string>
     <string name="password_textfield_label">Пароль</string>
-    <string name="password_visibility_description">password visibility button</string>
     <string name="enter_button_text">ВОЙТИ</string>
+    <string name="skip_authorization_button_text">Продолжить без авторизации</string>
+
     <string name="not_cyrillic_letter">Логин пользователя должен быть на кириллице</string>
     <string name="wrong_login">Неверный логин</string>
     <string name="no_latin_letters_in_password">Пароль должен содержать хотя бы одну латинскую букву</string>
     <string name="no_digits_in_password">Пароль должен содержать хотя бы одну цифру</string>
     <string name="short_password">Пароль должен содержать не менее 6 символов</string>
+
+    <!--Weather Screen-->
+    <string name="weather_page_title">Погода</string>
+    <string name="city_textfield_label">Город</string>
+    <string name="temperature_textfield_label">Температура (°С)</string>
+    <string name="estimate_button_text">ОЦЕНИТЬ</string>
+    <string name="search_history_section_title">Недавно вы искали:</string>
+    <string name="search_history_placeholder_text">здесь появятся ваши предыдущие запросы</string>
+
 </resources>

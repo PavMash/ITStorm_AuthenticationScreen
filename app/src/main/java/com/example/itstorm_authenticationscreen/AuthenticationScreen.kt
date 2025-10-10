@@ -1,16 +1,15 @@
 package com.example.itstorm_authenticationscreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,20 +20,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -49,18 +44,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm_authenticationscreen.ui.theme.Black
-import com.example.itstorm_authenticationscreen.ui.theme.BrightRed
-import com.example.itstorm_authenticationscreen.ui.theme.DarkGrey
-import com.example.itstorm_authenticationscreen.ui.theme.Grey
-import com.example.itstorm_authenticationscreen.ui.theme.GreyishWhite
+import com.example.itstorm_authenticationscreen.ui.theme.Grey1A
+import com.example.itstorm_authenticationscreen.ui.theme.Grey34
+import com.example.itstorm_authenticationscreen.ui.theme.Grey67
+import com.example.itstorm_authenticationscreen.ui.theme.GreyC6
+import com.example.itstorm_authenticationscreen.ui.theme.GreyE5
 import com.example.itstorm_authenticationscreen.ui.theme.ITStorm_AuthenticationScreenTheme
-import com.example.itstorm_authenticationscreen.ui.theme.LightBlack
-import com.example.itstorm_authenticationscreen.ui.theme.Red
+import com.example.itstorm_authenticationscreen.ui.theme.Red00
+import com.example.itstorm_authenticationscreen.ui.theme.Red0C
 import com.example.itstorm_authenticationscreen.ui.theme.White
 import com.example.itstorm_authenticationscreen.ui.theme.robotoFlexFontFamily
 import org.w3c.dom.Text
@@ -100,7 +94,7 @@ private fun Authentication() {
                 fontSize = 28.sp,
                 fontFamily = robotoFlexFontFamily,
                 fontWeight = FontWeight(500),
-                color = GreyishWhite
+                color = GreyE5
             )
 
             Spacer(modifier = Modifier.width(2.dp))
@@ -128,7 +122,7 @@ private fun Authentication() {
                 fontFamily = robotoFlexFontFamily,
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
-                color = Grey,
+                color = Grey67,
             )},
             onValueChange = {newText : String ->
                 login = newText
@@ -138,9 +132,9 @@ private fun Authentication() {
                 focusedContainerColor = Black,
                 unfocusedContainerColor = Black,
                 errorContainerColor = Black,
-                unfocusedIndicatorColor = DarkGrey,
-                focusedIndicatorColor = DarkGrey,
-                errorIndicatorColor = Red
+                unfocusedIndicatorColor = Grey34,
+                focusedIndicatorColor = Grey34,
+                errorIndicatorColor = Red0C
             ),
             modifier = Modifier.align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
@@ -170,7 +164,7 @@ private fun Authentication() {
                     fontFamily = robotoFlexFontFamily,
                     fontSize = 16.sp,
                     fontWeight = FontWeight(400),
-                    color = Grey,
+                    color = Grey67,
                 )},
             onValueChange = {newText : String ->
                 password = newText
@@ -181,9 +175,9 @@ private fun Authentication() {
                 focusedContainerColor = Black,
                 unfocusedContainerColor = Black,
                 errorContainerColor = Black,
-                unfocusedIndicatorColor = DarkGrey,
-                focusedIndicatorColor = DarkGrey,
-                errorIndicatorColor = Red
+                unfocusedIndicatorColor = Grey34,
+                focusedIndicatorColor = Grey34,
+                errorIndicatorColor = Red0C
             ),
             modifier = Modifier.align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
@@ -234,11 +228,29 @@ private fun Authentication() {
                     &&loginError.isEmpty()
                     &&passwordError.isEmpty(),
             colors = ButtonDefaults.buttonColors(
-                disabledContainerColor = Grey,
-                containerColor = if (isPressed) White else GreyishWhite,
-                disabledContentColor = DarkGrey,
-                contentColor = if (isPressed) Black else LightBlack
+                disabledContainerColor = Grey67,
+                containerColor = if (isPressed) White else GreyE5,
+                disabledContentColor = Grey34,
+                contentColor = if (isPressed) Black else Grey1A
             )
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        TextButton(
+            content = {
+                Text(
+                text = stringResource(R.string.skip_authorization_button_text),
+                fontFamily = robotoFlexFontFamily,
+                fontWeight = FontWeight(500),
+                fontSize = 14.sp,
+                color = GreyC6
+            )},
+            onClick = {
+                val intent = Intent(context, WeatherScreen::class.java)
+                context.startActivity(intent)
+            },
+            modifier = Modifier.fillMaxWidth().padding(start = 9.dp, end = 9.dp)
         )
     }
 }
@@ -259,7 +271,7 @@ private fun ErrorMessage(errCode: String) {
         fontFamily = robotoFlexFontFamily,
         fontSize = 12.sp,
         fontWeight = FontWeight(500),
-        color = BrightRed,
+        color = Red00,
         modifier = Modifier.padding(start = 23.dp)
     )
 }

@@ -36,8 +36,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm_authenticationscreen.ui.theme.Black
-import com.example.itstorm_authenticationscreen.ui.theme.Grey
-import com.example.itstorm_authenticationscreen.ui.theme.GreyishWhite
+import com.example.itstorm_authenticationscreen.ui.theme.Grey67
+import com.example.itstorm_authenticationscreen.ui.theme.GreyE5
 import com.example.itstorm_authenticationscreen.ui.theme.ITStorm_AuthenticationScreenTheme
 import com.example.itstorm_authenticationscreen.ui.theme.robotoFlexFontFamily
 import kotlinx.coroutines.delay
@@ -100,7 +100,7 @@ private fun SplashScreen(onTimeout: () -> Unit) {
                         fontSize = 28.sp,
                         fontFamily = robotoFlexFontFamily,
                         fontWeight = FontWeight(500),
-                        color = GreyishWhite
+                        color = GreyE5
                     )
                 }
             }
@@ -110,7 +110,7 @@ private fun SplashScreen(onTimeout: () -> Unit) {
                 fontSize = 14.sp,
                 fontFamily = robotoFlexFontFamily,
                 fontWeight = FontWeight(500),
-                color = Grey,
+                color = Grey67,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 64.dp)

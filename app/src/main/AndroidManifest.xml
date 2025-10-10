@@ -12,6 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ITStorm_AuthenticationScreen">
         <activity
+            android:name=".WeatherScreen"
+            android:exported="false"
+            android:label="@string/title_activity_weather_screen"
+            android:theme="@style/Theme.ITStorm_AuthenticationScreen" />
+        <activity
+            android:name=".ui.theme.WeatherScreen"
+            android:exported="false"
+            android:label="@string/title_activity_weather_screen"
+            android:theme="@style/Theme.ITStorm_AuthenticationScreen" />
+        <activity
             android:name=".AuthenticationScreen"
             android:exported="false"
             android:label="@string/title_activity_authentication_screen"
