@@ -20,4 +20,8 @@ class WeatherComponentImpl(
         store.accept(WeatherStore.Intent.EstimateCityWeather(city = city,
             temperature = temperature))
     }
+
+    override fun onRetryEstimation() {
+        store.accept(WeatherStore.Intent.RetryEstimation)
+    }
 }

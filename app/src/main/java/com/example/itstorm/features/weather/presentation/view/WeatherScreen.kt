@@ -1,5 +1,6 @@
 package com.example.itstorm.features.weather.presentation.view
 
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,18 +12,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.defaultComponentContext
@@ -33,12 +42,17 @@ import com.example.itstorm.features.weather.presentation.component.WeatherCompon
 import com.example.itstorm.features.weather.presentation.component.WeatherComponentImpl
 import com.example.itstorm.features.weather.presentation.store.WeatherStoreFactory
 import com.example.itstorm.features.weather.presentation.view.ui.theme.Black
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey1A
 import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey34
 import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey67
 import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyE5
 import com.example.itstorm.features.weather.presentation.view.ui.theme.ITStorm_AuthenticationScreenTheme
 import com.example.itstorm.features.weather.presentation.view.ui.theme.White
 import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFlexFontFamily
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 class WeatherScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +69,7 @@ class WeatherScreen : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     containerColor = Black,
                 ) { innerPadding ->
-                    WeatherInterface(component, innerPadding)
+                    WeatherScreen(component, innerPadding)
                 }
             }
         }
@@ -63,7 +77,9 @@ class WeatherScreen : ComponentActivity() {
 }
 
 @Composable
-private fun WeatherInterface(component: WeatherComponent, innerPadding: PaddingValues) {
+private fun WeatherScreen(component: WeatherComponent, innerPadding: PaddingValues) {
+    val state by component.model.collectAsState()
+
     Column(modifier = Modifier.fillMaxSize()
         .padding(innerPadding)) {
         Text(
@@ -78,26 +94,39 @@ private fun WeatherInterface(component: WeatherComponent, innerPadding: PaddingV
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        val city = remember {
-            mutableStateOf(value = "")
-        }
-        val temperature = remember {
-            mutableStateOf(value = "")
-        }
-        CityAndTemperatureInput(city, temperature)
+        if (state.estimationInProgress) CityAndTemperatureInput(component)
+        else LatestEstimationCard(state.latestEstimation.city,
+            state.latestEstimation.temperature,
+            state.latestEstimation.verdict)
     }
 }
 
 @Composable
-private fun CityAndTemperatureInput(city: MutableState<String>,
-                                    temperature: MutableState<String>) {
+private fun CityAndTemperatureInput(component: WeatherComponent) {
+    val city = remember {
+        mutableStateOf(value = "")
+    }
+    val temperature = remember {
+        mutableStateOf(value = "")
+    }
+    val isCityValid = remember {
+        mutableStateOf(value = false)
+    }
+    val isTemperatureValid = remember {
+        mutableStateOf(value = false)
+    }
+    val scope = rememberCoroutineScope()
+
     Column(modifier = Modifier.fillMaxWidth()
         .padding(start = 7.dp, end = 7.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
         TextField(
             value = city.value,
             onValueChange = { newVal ->
-               city.value = newVal
+                city.value = newVal.trim()
+                scope.launch {
+                    isCityValid.value = validateCityInput(city.value)
+                }
             },
             label = {
                 TextFieldLabel(
@@ -116,7 +145,11 @@ private fun CityAndTemperatureInput(city: MutableState<String>,
         TextField(
             value = temperature.value,
             onValueChange = { newVal ->
-                temperature.value = newVal
+                temperature.value = newVal.trim()
+                scope.launch {
+                    isTemperatureValid.value =
+                        validateTemperatureInput(temperature.value)
+                }
             },
             label = {
                 TextFieldLabel(
@@ -131,6 +164,33 @@ private fun CityAndTemperatureInput(city: MutableState<String>,
                 focusedTextColor = White,
             )
         )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Button(
+            modifier = Modifier.align(Alignment.End).padding(end = 12.dp),
+            onClick = {
+                component.onEstimate(
+                    city.value,
+                    temperature.value.toInt())
+            },
+            content = {
+                Text(
+                    text = stringResource(R.string.estimate_button_text),
+                    fontFamily = robotoFlexFontFamily,
+                    fontWeight = FontWeight(500),
+                    fontSize = 14.sp
+                    )
+            },
+            shape = RoundedCornerShape(4.dp),
+            enabled = isCityValid.value && isTemperatureValid.value,
+            colors = ButtonDefaults.buttonColors(
+                disabledContainerColor = Grey67,
+                containerColor = GreyE5,
+                disabledContentColor = Grey34,
+                contentColor = Grey1A
+            )
+        )
     }
 }
 
@@ -143,4 +203,35 @@ private fun TextFieldLabel(label: String) {
         fontSize = 16.sp,
         color = Grey67
     )
+}
+
+private suspend fun validateCityInput(city: String): Boolean {
+    return withContext(Dispatchers.IO) {
+        val nonEmptyAndBlank = city.isNotBlank()
+                &&city.isNotEmpty()
+
+        val cyrillicPattern = Regex("\\p{IsCyrillic}")
+        val containsCyrillicLetters = cyrillicPattern.containsMatchIn(city)
+
+        nonEmptyAndBlank && containsCyrillicLetters
+    }
+}
+
+private suspend fun validateTemperatureInput(temperature: String): Boolean {
+    return withContext(Dispatchers.IO) {
+        val nonEmptyAndBlank = temperature.isNotBlank()
+                &&temperature.isNotEmpty()
+
+        val numericPattern = Regex("^-?\\d+$")
+        val isNumerical = numericPattern.matches(temperature)
+
+        nonEmptyAndBlank && isNumerical
+    }
+}
+
+@Composable
+private fun LatestEstimationCard(city: String, temperature: Int, verdict: String) {
+    Text("City: $city, Temperature: $temperature, Verdict: $verdict",
+        color = White,
+        fontSize = 20.sp)
 }

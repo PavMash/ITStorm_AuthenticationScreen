@@ -24,6 +24,7 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
 
     private sealed interface Msg {
         data class EstimationDone(val newEstimation: WeatherEstimation) : Msg
+        object BringBackEstimationInterface : Msg
     }
 
     private class WeatherExecutor : CoroutineExecutor<Intent, Unit, State, Msg, Nothing>() {
@@ -33,6 +34,7 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
                     city = intent.city,
                     temperature = intent.temperature
                 )
+                is Intent.RetryEstimation -> retryEstimation()
             }
 
         private fun estimateCityWeather(city: String, temperature: Int) {
@@ -55,6 +57,12 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
             }
         }
 
+        private fun retryEstimation() {
+            scope.launch {
+                dispatch(Msg.BringBackEstimationInterface)
+            }
+        }
+
     }
 
     private object WeatherReducer : Reducer<State, Msg> {
@@ -62,7 +70,12 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
             when(msg) {
                 is Msg.EstimationDone
                      -> copy(estimations = listOf(msg.newEstimation) + estimations,
-                         latestEstimation = msg.newEstimation)
+                         latestEstimation = msg.newEstimation,
+                         estimationInProgress = !estimationInProgress)
+                is Msg.BringBackEstimationInterface
+                    -> copy(estimations = estimations,
+                        latestEstimation = latestEstimation,
+                        estimationInProgress = !estimationInProgress)
             }
     }
 }

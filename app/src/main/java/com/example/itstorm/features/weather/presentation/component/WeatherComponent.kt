@@ -7,4 +7,6 @@ interface WeatherComponent {
     val model: StateFlow<WeatherStore.State>
 
     fun onEstimate(city: String, temperature: Int)
+
+    fun onRetryEstimation()
 }
