@@ -35,5 +35,7 @@
     <string name="estimate_button_text">ОЦЕНИТЬ</string>
     <string name="search_history_section_title">Недавно вы искали:</string>
     <string name="search_history_placeholder_text">здесь появятся ваши предыдущие запросы</string>
+    <string name="temperature_icon_description_text">Температура</string>
+    <string name="verdict_template">Сейчас в г. </string>
 
 </resources>

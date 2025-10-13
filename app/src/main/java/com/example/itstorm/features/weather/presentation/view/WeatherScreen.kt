@@ -5,16 +5,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,8 +41,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalOf
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -52,6 +69,7 @@ import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.intellij.lang.annotations.JdkConstants
 import org.w3c.dom.Text
 
 class WeatherScreen : ComponentActivity() {
@@ -121,6 +139,7 @@ private fun CityAndTemperatureInput(component: WeatherComponent) {
         .padding(start = 7.dp, end = 7.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = city.value,
             onValueChange = { newVal ->
                 city.value = newVal.trim()
@@ -143,6 +162,7 @@ private fun CityAndTemperatureInput(component: WeatherComponent) {
         )
 
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = temperature.value,
             onValueChange = { newVal ->
                 temperature.value = newVal.trim()
@@ -231,7 +251,105 @@ private suspend fun validateTemperatureInput(temperature: String): Boolean {
 
 @Composable
 private fun LatestEstimationCard(city: String, temperature: Int, verdict: String) {
-    Text("City: $city, Temperature: $temperature, Verdict: $verdict",
-        color = White,
-        fontSize = 20.sp)
+    Column(
+        modifier = Modifier.fillMaxWidth()
+            .padding(start = 7.dp, end = 7.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Card(
+            modifier = Modifier.fillMaxWidth()
+                .padding(12.dp),
+            shape = RoundedCornerShape(8.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Grey1A,
+                disabledContainerColor = Grey1A
+            )
+        ) {
+            EstimationCardContent(city, temperature)
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            HorizontalDivider(
+                modifier = Modifier.fillMaxWidth(),
+                thickness = 1.dp,
+                color = Grey34
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                modifier = Modifier.align(Alignment.Start),
+                text = stringResource(R.string.verdict_template) + "$city $verdict",
+                fontFamily = robotoFlexFontFamily,
+                fontSize = 16.sp,
+                fontWeight = FontWeight(500),
+                color = White
+            )
+        }
+    }
+}
+
+@Composable
+private fun EstimationCardContent(city: String, temperature: Int) {
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .height(32.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Card(
+            modifier = Modifier.fillMaxHeight()
+                .padding(6.dp),
+            shape = RoundedCornerShape(4.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Grey1A,
+                disabledContainerColor = Grey1A
+            ),
+            border = BorderStroke(
+                width = 1.dp,
+                color = Grey34
+            )
+        ) {
+            Text(
+                modifier = Modifier.fillMaxSize(),
+                text = city.uppercase(),
+                fontFamily = robotoFlexFontFamily,
+                fontSize = 14.sp,
+                fontWeight = FontWeight(400),
+                color = GreyE5
+            )
+        }
+
+        Spacer(modifier = Modifier.width(175.dp))
+
+        Box(
+            modifier = Modifier.fillMaxHeight()
+                .padding(6.dp),
+        ) {
+            Icon(
+                modifier = Modifier.fillMaxHeight()
+                    .align(Alignment.CenterStart),
+                painter = painterResource(R.drawable.union),
+                contentDescription = stringResource(R.string.temperature_icon_description_text)
+            )
+
+            Spacer(modifier = Modifier.width(7.25.dp))
+
+            Text(
+                modifier = Modifier.fillMaxHeight()
+                    .align(Alignment.CenterEnd),
+                text = createTemperatureString(temperature),
+                fontFamily = robotoFlexFontFamily,
+                fontWeight = FontWeight(400),
+                fontSize = 14.sp,
+                color = GreyE5
+            )
+        }
+    }
+}
+
+private fun createTemperatureString(temperature: Int): String {
+    val degreeSign = 0x00B0
+    var tempStr = if (temperature > 0) "+" else ""
+    tempStr += temperature.toString() + degreeSign.toChar().toString() + "C"
+    return tempStr
 }
