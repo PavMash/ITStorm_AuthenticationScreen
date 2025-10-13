@@ -1,11 +1,9 @@
-package com.example.itstorm_authenticationscreen
+package com.example.itstorm.features.weather.presentation.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.interaction.DragInteraction
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -19,28 +17,37 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.itstorm_authenticationscreen.ui.theme.Black
-import com.example.itstorm_authenticationscreen.ui.theme.Grey34
-import com.example.itstorm_authenticationscreen.ui.theme.Grey67
-import com.example.itstorm_authenticationscreen.ui.theme.GreyE5
-import com.example.itstorm_authenticationscreen.ui.theme.ITStorm_AuthenticationScreenTheme
-import com.example.itstorm_authenticationscreen.ui.theme.White
-import com.example.itstorm_authenticationscreen.ui.theme.robotoFlexFontFamily
+import com.arkivanov.decompose.defaultComponentContext
+import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import com.example.itstorm.R
+import com.example.itstorm.features.weather.presentation.component.WeatherComponent
+import com.example.itstorm.features.weather.presentation.component.WeatherComponentImpl
+import com.example.itstorm.features.weather.presentation.store.WeatherStoreFactory
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Black
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey34
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey67
+import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyE5
+import com.example.itstorm.features.weather.presentation.view.ui.theme.ITStorm_AuthenticationScreenTheme
+import com.example.itstorm.features.weather.presentation.view.ui.theme.White
+import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFlexFontFamily
 
 class WeatherScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val component = WeatherComponentImpl(storeFactory = WeatherStoreFactory(
+            storeFactory = DefaultStoreFactory()),
+            componentContext = defaultComponentContext())
+
         enableEdgeToEdge()
         setContent {
             ITStorm_AuthenticationScreenTheme {
@@ -48,7 +55,7 @@ class WeatherScreen : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     containerColor = Black,
                 ) { innerPadding ->
-                    WeatherInterface(innerPadding)
+                    WeatherInterface(component, innerPadding)
                 }
             }
         }
@@ -56,7 +63,7 @@ class WeatherScreen : ComponentActivity() {
 }
 
 @Composable
-private fun WeatherInterface(innerPadding: PaddingValues) {
+private fun WeatherInterface(component: WeatherComponent, innerPadding: PaddingValues) {
     Column(modifier = Modifier.fillMaxSize()
         .padding(innerPadding)) {
         Text(

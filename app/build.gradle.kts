@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.itstorm_authenticationscreen"
+    namespace = "com.example.itstorm"
     compileSdk = 36
 
     defaultConfig {
@@ -49,6 +49,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.mvikotlin)
+    implementation(libs.mvikotlin.main)
+    implementation(libs.mvikotlin.logging)
+    implementation(libs.mvikotlin.timetravel)
+    implementation(libs.mvikotlin.extensions.coroutines)
+    implementation(libs.decompose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

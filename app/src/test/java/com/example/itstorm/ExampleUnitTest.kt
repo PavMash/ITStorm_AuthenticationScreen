@@ -1,4 +1,4 @@
-package com.example.itstorm_authenticationscreen
+package com.example.itstorm
 
 import org.junit.Test
 

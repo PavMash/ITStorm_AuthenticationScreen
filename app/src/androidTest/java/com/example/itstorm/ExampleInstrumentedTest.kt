@@ -1,4 +1,4 @@
-package com.example.itstorm_authenticationscreen
+package com.example.itstorm
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

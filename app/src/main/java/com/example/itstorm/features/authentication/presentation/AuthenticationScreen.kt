@@ -1,4 +1,4 @@
-package com.example.itstorm_authenticationscreen
+package com.example.itstorm.features.authentication.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -46,18 +46,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.itstorm_authenticationscreen.ui.theme.Black
-import com.example.itstorm_authenticationscreen.ui.theme.Grey1A
-import com.example.itstorm_authenticationscreen.ui.theme.Grey34
-import com.example.itstorm_authenticationscreen.ui.theme.Grey67
-import com.example.itstorm_authenticationscreen.ui.theme.GreyC6
-import com.example.itstorm_authenticationscreen.ui.theme.GreyE5
-import com.example.itstorm_authenticationscreen.ui.theme.ITStorm_AuthenticationScreenTheme
-import com.example.itstorm_authenticationscreen.ui.theme.Red00
-import com.example.itstorm_authenticationscreen.ui.theme.Red0C
-import com.example.itstorm_authenticationscreen.ui.theme.White
-import com.example.itstorm_authenticationscreen.ui.theme.robotoFlexFontFamily
-import org.w3c.dom.Text
+import com.example.itstorm.R
+import com.example.itstorm.features.weather.presentation.view.WeatherScreen
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Black
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey1A
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey34
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey67
+import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyC6
+import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyE5
+import com.example.itstorm.features.weather.presentation.view.ui.theme.ITStorm_AuthenticationScreenTheme
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Red00
+import com.example.itstorm.features.weather.presentation.view.ui.theme.Red0C
+import com.example.itstorm.features.weather.presentation.view.ui.theme.White
+import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFlexFontFamily
 
 class AuthenticationScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
