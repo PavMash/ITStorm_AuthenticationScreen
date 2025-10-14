@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -69,6 +70,7 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.defaultComponentContext
@@ -447,9 +449,11 @@ private fun EstimationHistorySection(component: WeatherComponent) {
 
 @Composable
 private fun EstimationHistory(estimations: List<WeatherEstimation>) {
-    LazyColumn {
-        items(estimations) { estimation
-            -> EstimationHistoryCard(estimation)
+    LazyColumn (
+        verticalArrangement = Arrangement.spacedBy(6.dp)
+    ) {
+        items(estimations) { estimation ->
+            EstimationHistoryCard(estimation)
         }
     }
 }
@@ -517,7 +521,7 @@ private fun BottomNavBar() {
         BottomNavButton(
             painterResource(R.drawable.heart),
             label = stringResource(R.string.favourites_page_navigation_text),
-            enabled = true, Modifier.weight(1f).fillMaxHeight()
+            enabled = true, Modifier.weight(1f).fillMaxHeight(),
         ) { }
     }
 }
@@ -541,13 +545,17 @@ private fun BottomNavButton(painter: Painter, label: String, enabled: Boolean,
         modifier = modifiers
     ) {
         Column(
+            //modifier = Modifier.padding(vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.Bottom
         ){
             Icon(
+                modifier = Modifier.size(16.dp),
                 painter = painter,
                 contentDescription = label
             )
+
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = label,
