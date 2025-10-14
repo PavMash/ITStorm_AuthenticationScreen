@@ -63,7 +63,8 @@ import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFle
 class AuthenticationScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),
+            navigationBarStyle = SystemBarStyle.dark(Color.Black.toArgb()))
         setContent {
             ITStorm_AuthenticationScreenTheme {
                 Surface(color = Black) {
@@ -76,12 +77,7 @@ class AuthenticationScreen : ComponentActivity() {
 
 @Composable
 private fun Authentication() {
-
     val context = LocalContext.current as ComponentActivity
-    context.enableEdgeToEdge(
-        statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),
-        navigationBarStyle = SystemBarStyle.dark(Color.Black.toArgb())
-    )
 
     Column(modifier = Modifier.fillMaxSize()) {
         Row(

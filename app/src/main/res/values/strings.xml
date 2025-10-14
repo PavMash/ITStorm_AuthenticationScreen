@@ -9,7 +9,7 @@
     <string name="logo_image_description">circular progress bar</string>
     <string name="weather_page_navigation_text">Погода</string>
     <string name="news_page_navigation_text">Новости</string>
-    <string name="gallery_page_navigation_text">Галерея</string>
+    <string name="favourites_page_navigation_text">Избранное</string>
 
     <!--Slash screen-->
     <string name="app_version">1.0.41</string>
@@ -33,6 +33,7 @@
     <string name="city_textfield_label">Город</string>
     <string name="temperature_textfield_label">Температура (°С)</string>
     <string name="estimate_button_text">ОЦЕНИТЬ</string>
+    <string name="retry_estimation_button_text">СДЕЛАТЬ НОВЫЙ ЗАПРОС</string>
     <string name="search_history_section_title">Недавно вы искали:</string>
     <string name="search_history_placeholder_text">здесь появятся ваши предыдущие запросы</string>
     <string name="temperature_icon_description_text">Температура</string>
