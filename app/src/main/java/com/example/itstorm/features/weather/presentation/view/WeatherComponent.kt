@@ -1,7 +1,7 @@
-package com.example.itstorm.features.weather.presentation.component
+package com.example.itstorm.features.weather.presentation.view
 
-import kotlinx.coroutines.flow.StateFlow
 import com.example.itstorm.features.weather.presentation.store.WeatherStore
+import kotlinx.coroutines.flow.StateFlow
 
 interface WeatherComponent {
     val model: StateFlow<WeatherStore.State>

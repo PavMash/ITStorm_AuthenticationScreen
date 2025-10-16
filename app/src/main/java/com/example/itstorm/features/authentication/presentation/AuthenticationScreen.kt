@@ -44,6 +44,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm.R
@@ -97,7 +98,7 @@ private fun Authentication() {
             Spacer(modifier = Modifier.width(2.dp))
 
             Image(
-                painter = painterResource(R.drawable.circular_progress_bar),
+                painter = painterResource(R.drawable.logo),
                 contentDescription = stringResource(R.string.logo_image_description),
                 modifier = Modifier.size(width = 48.dp, height = 48.dp)
             )
@@ -305,4 +306,21 @@ private fun validatePassword(password: String) : String {
     }
 
     return ""
+}
+
+@Preview
+@Composable
+fun TextBut() {
+    TextButton(
+        content = {
+            Text(
+                text = stringResource(R.string.skip_authorization_button_text),
+                fontFamily = robotoFlexFontFamily,
+                fontWeight = FontWeight(500),
+                fontSize = 14.sp,
+                color = GreyC6
+            )},
+        onClick = { },
+        modifier = Modifier.fillMaxWidth().padding(start = 9.dp, end = 9.dp)
+    )
 }

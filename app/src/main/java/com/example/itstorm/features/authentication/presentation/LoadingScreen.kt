@@ -86,7 +86,7 @@ private fun SplashScreen(onTimeout: () -> Unit) {
                 )
 
                 Image(
-                    painter = painterResource(R.drawable.circular_progress_bar),
+                    painter = painterResource(R.drawable.logo),
                     contentDescription = stringResource(R.string.logo_image_description),
                     modifier = Modifier.size(width = 48.dp, height = 48.dp)
                         .graphicsLayer { rotationZ = rotate }
