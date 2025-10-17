@@ -36,11 +36,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm.R
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Black
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey67
-import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyE5
-import com.example.itstorm.features.weather.presentation.view.ui.theme.ITStorm_AuthenticationScreenTheme
-import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFlexFontFamily
+import com.example.itstorm.core.ui.theme.Black
+import com.example.itstorm.core.ui.theme.Grey67
+import com.example.itstorm.core.ui.theme.GreyE5
+import com.example.itstorm.core.ui.theme.ITStorm_AuthenticationScreenTheme
+import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 import kotlinx.coroutines.delay
 
 class LoadingScreen : ComponentActivity() {

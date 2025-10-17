@@ -8,13 +8,12 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.example.itstorm.features.weather.domain.WeatherEstimation
 import com.example.itstorm.features.weather.presentation.store.WeatherStore.Intent
 import com.example.itstorm.features.weather.presentation.store.WeatherStore.State
-import com.example.itstorm.features.weather.presentation.store.WeatherStoreFactory.WeatherExecutor
 import kotlinx.coroutines.launch
 
 class WeatherStoreFactory (private val storeFactory : StoreFactory) {
 
-    fun create() : WeatherStore =
-        object :  WeatherStore, Store<Intent, State, Nothing> by storeFactory.create(
+    fun create(): WeatherStore =
+        object:  WeatherStore, Store<Intent, State, Nothing> by storeFactory.create(
             name = "WeatherStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
@@ -27,7 +26,7 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
         object BringBackEstimationInterface : Msg
     }
 
-    private class WeatherExecutor : CoroutineExecutor<Intent, Unit, State, Msg, Nothing>() {
+    private class WeatherExecutor: CoroutineExecutor<Intent, Unit, State, Msg, Nothing>() {
         override fun executeIntent(intent: Intent) =
             when(intent) {
                 is Intent.EstimateCityWeather -> estimateCityWeather(
@@ -58,14 +57,12 @@ class WeatherStoreFactory (private val storeFactory : StoreFactory) {
         }
 
         private fun retryEstimation() {
-            scope.launch {
-                dispatch(Msg.BringBackEstimationInterface)
-            }
+            dispatch(Msg.BringBackEstimationInterface)
         }
 
     }
 
-    private object WeatherReducer : Reducer<State, Msg> {
+    private object WeatherReducer: Reducer<State, Msg> {
         override fun State.reduce(msg: Msg): State =
             when(msg) {
                 is Msg.EstimationDone

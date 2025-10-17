@@ -1,4 +1,4 @@
-package com.example.itstorm.features.weather.presentation.view.ui.theme
+package com.example.itstorm.core.ui.theme
 
 import android.os.Build
 import androidx.compose.material3.MaterialTheme

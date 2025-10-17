@@ -49,17 +49,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm.R
 import com.example.itstorm.features.weather.presentation.view.WeatherScreen
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Black
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey1A
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey34
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Grey67
-import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyC6
-import com.example.itstorm.features.weather.presentation.view.ui.theme.GreyE5
-import com.example.itstorm.features.weather.presentation.view.ui.theme.ITStorm_AuthenticationScreenTheme
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Red00
-import com.example.itstorm.features.weather.presentation.view.ui.theme.Red0C
-import com.example.itstorm.features.weather.presentation.view.ui.theme.White
-import com.example.itstorm.features.weather.presentation.view.ui.theme.robotoFlexFontFamily
+import com.example.itstorm.core.ui.theme.Black
+import com.example.itstorm.core.ui.theme.Grey1A
+import com.example.itstorm.core.ui.theme.Grey34
+import com.example.itstorm.core.ui.theme.Grey67
+import com.example.itstorm.core.ui.theme.GreyC6
+import com.example.itstorm.core.ui.theme.GreyE5
+import com.example.itstorm.core.ui.theme.ITStorm_AuthenticationScreenTheme
+import com.example.itstorm.core.ui.theme.Red00
+import com.example.itstorm.core.ui.theme.Red0C
+import com.example.itstorm.core.ui.theme.White
+import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 
 class AuthenticationScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.itstorm.features.weather.presentation.view.ui.theme
+package com.example.itstorm.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
