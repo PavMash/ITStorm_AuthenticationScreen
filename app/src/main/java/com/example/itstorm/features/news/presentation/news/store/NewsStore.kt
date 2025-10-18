@@ -1,10 +1,10 @@
-package com.example.itstorm.features.news.presentation.store
+package com.example.itstorm.features.news.presentation.news.store
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.example.itstorm.core.ui.models.UINews
-import com.example.itstorm.features.news.presentation.store.NewsStore.Intent
-import com.example.itstorm.features.news.presentation.store.NewsStore.State
-import com.example.itstorm.features.news.presentation.store.NewsStore.Label
+import com.example.itstorm.features.news.presentation.news.store.NewsStore.Intent
+import com.example.itstorm.features.news.presentation.news.store.NewsStore.State
+import com.example.itstorm.features.news.presentation.news.store.NewsStore.Label
 
 interface NewsStore: Store<Intent, State, Label> {
 

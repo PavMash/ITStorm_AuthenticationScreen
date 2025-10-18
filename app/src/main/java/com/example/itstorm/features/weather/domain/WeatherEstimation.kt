@@ -1,7 +1,7 @@
 package com.example.itstorm.features.weather.domain
 
 data class WeatherEstimation(
-    val city : String = "г. N",
-    val temperature : Int = 0,
-    val verdict : String = ""
+    val city : String,
+    val temperature : Int,
+    val verdict : String
 )

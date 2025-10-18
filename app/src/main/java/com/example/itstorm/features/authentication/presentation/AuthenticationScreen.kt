@@ -1,11 +1,7 @@
 package com.example.itstorm.features.authentication.presentation
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.SystemBarStyle
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -36,8 +32,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,8 +41,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.example.itstorm.R
-import com.example.itstorm.features.weather.presentation.view.WeatherScreen
 import com.example.itstorm.core.ui.theme.Black
 import com.example.itstorm.core.ui.theme.Grey1A
 import com.example.itstorm.core.ui.theme.Grey34
@@ -61,23 +57,17 @@ import com.example.itstorm.core.ui.theme.Red0C
 import com.example.itstorm.core.ui.theme.White
 import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 
-class AuthenticationScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),
-            navigationBarStyle = SystemBarStyle.dark(Color.Black.toArgb()))
-        setContent {
-            ITStorm_AuthenticationScreenTheme {
-                Surface(color = Black) {
-                    Authentication()
-                }
-            }
+@Composable
+fun AuthenticationUI(component: AuthenticationComponent) {
+    ITStorm_AuthenticationScreenTheme {
+        Surface(color = Black) {
+            AuthenticationScreen(component)
         }
     }
 }
 
 @Composable
-private fun Authentication() {
+fun AuthenticationScreen(component: AuthenticationComponent) {
     val context = LocalContext.current as ComponentActivity
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -97,10 +87,13 @@ private fun Authentication() {
 
             Spacer(modifier = Modifier.width(2.dp))
 
-            Image(
-                painter = painterResource(R.drawable.logo),
-                contentDescription = stringResource(R.string.logo_image_description),
-                modifier = Modifier.size(width = 48.dp, height = 48.dp)
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(R.raw.logo)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .build(),
+                contentDescription = null,
+                modifier = Modifier.size(48.dp)
             )
         }
 
@@ -245,8 +238,9 @@ private fun Authentication() {
                 color = GreyC6
             )},
             onClick = {
-                val intent = Intent(context, WeatherScreen::class.java)
-                context.startActivity(intent)
+//                val intent = Intent(context, WeatherScreen::class.java)
+//                context.startActivity(intent)
+                component.onContinueWithoutAuthorization()
             },
             modifier = Modifier.fillMaxWidth().padding(start = 9.dp, end = 9.dp)
         )
