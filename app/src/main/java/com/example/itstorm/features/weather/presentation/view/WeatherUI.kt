@@ -32,6 +32,7 @@ import com.example.itstorm.R
 import com.example.itstorm.core.ui.components.BottomNavBar
 import com.example.itstorm.core.ui.components.HostingScreen
 import com.example.itstorm.core.ui.components.SectionTitle
+import com.example.itstorm.core.ui.components.SubtitleText
 import com.example.itstorm.features.weather.domain.WeatherEstimation
 import com.example.itstorm.core.ui.theme.Black
 import com.example.itstorm.core.ui.theme.Grey2F
@@ -60,8 +61,8 @@ fun WeatherUI(component: WeatherComponent) {
                     BottomNavBar(
                         hostingScreen = HostingScreen.Weather,
                         onWeatherClick = {},
-                        onNewsClick = { component.onNewsClicked() },
-                        onFavoritesClick = { component.onFavoritesClicked() }
+                        onNewsClick = component::onNewsClicked,
+                        onFavoritesClick = component::onFavoritesClicked
                     )
                 }
             }
@@ -76,10 +77,14 @@ private fun WeatherScreen(component: WeatherComponent, innerPadding: PaddingValu
     val state by component.model.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()
-        .padding(innerPadding)) {
+        .padding(innerPadding))
+    {
 
-        SectionTitle(Modifier.align(Alignment.Start)
-            .padding(start = 17.dp, top = 38.dp))
+        SectionTitle(
+            text = stringResource(R.string.weather_page_navigation_text),
+            modifier = Modifier.align(Alignment.Start)
+            .padding(start = 17.dp, top = 38.dp)
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -192,14 +197,11 @@ private fun EstimationHistorySection(
             .padding(horizontal = 7.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.Start)
-                .padding(start = 10.dp),
+
+        SubtitleText(
             text = stringResource(R.string.search_history_section_title),
-            fontFamily = robotoFlexFontFamily,
-            fontWeight = FontWeight.W500,
-            fontSize = 16.sp,
-            color = GreyE5
+            modifier = Modifier.align(Alignment.Start)
+                .padding(start = 10.dp)
         )
 
         Spacer(modifier = Modifier.height(6.dp))

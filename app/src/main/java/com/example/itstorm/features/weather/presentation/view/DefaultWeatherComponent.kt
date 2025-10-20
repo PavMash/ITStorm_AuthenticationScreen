@@ -27,10 +27,10 @@ class DefaultWeatherComponent(
         scope.launch {
             store.labels.collect {
                 when(it) {
-                    Label.ClickNews -> {
+                    is Label.ClickNews -> {
                         onNewsClicked()
                     }
-                    Label.ClickFavorites -> {
+                    is Label.ClickFavorites -> {
                         onFavoritesClicked()
                     }
                 }

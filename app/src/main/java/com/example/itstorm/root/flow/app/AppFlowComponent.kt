@@ -2,8 +2,8 @@ package com.example.itstorm.root.flow.app
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.example.itstorm.features.news.presentation.favorites.view.NewsFavoritesComponent
-import com.example.itstorm.features.news.presentation.news.view.NewsComponent
+import com.example.itstorm.features.favorites.presentation.view.NewsFavoritesComponent
+import com.example.itstorm.features.news.presentation.view.NewsComponent
 import com.example.itstorm.features.weather.presentation.view.WeatherComponent
 import kotlinx.serialization.Serializable
 

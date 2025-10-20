@@ -16,6 +16,9 @@ interface NewsDao {
     fun getFavorites(): Flow<List<NewsEntity>>
 
     @Query("SELECT * FROM news WHERE id = :id")
+    fun getNewsFlowById(id: Long): Flow<NewsEntity>
+
+    @Query("SELECT * FROM news WHERE id = :id")
     suspend fun getNewsById(id: Long): NewsEntity?
 
     @Upsert

@@ -1,8 +1,6 @@
 <resources>
     <!--Component names-->
     <string name="app_name">ITStorm_AuthenticationScreen</string>
-    <string name="title_activity_authentication_screen">AuthenticationScreen</string>
-    <string name="title_activity_weather_screen">WeatherScreen</string>
 
     <!--Cross-component elements-->
     <string name="app_title">NYTIMES</string>
@@ -29,7 +27,6 @@
     <string name="short_password">Пароль должен содержать не менее 6 символов</string>
 
     <!--Weather Screen-->
-    <string name="weather_page_title">Погода</string>
     <string name="city_textfield_label">Город</string>
     <string name="temperature_textfield_label">Температура (°С)</string>
     <string name="estimate_button_text">ОЦЕНИТЬ</string>
@@ -38,5 +35,14 @@
     <string name="search_history_placeholder_text">здесь появятся ваши предыдущие запросы</string>
     <string name="temperature_icon_description_text">Температура</string>
     <string name="verdict_template">Сейчас в г. </string>
+
+    <!--News Screens-->
+    <string name="clock_icon_description">Время</string>
+    <string name="time_to_read">Время чтения:</string>
+    <string name="read_icon_description">Прочитано</string>
+    <string name="unread_icon_description">Не прочитано</string>
+    <string name="move_from_favorites_icon_description">Убрать из избранных</string>
+    <string name="add_to_favorites_icon_description">Добавить в избранные</string>
+    <string name="close_icon_description">Закрыть</string>
 
 </resources>

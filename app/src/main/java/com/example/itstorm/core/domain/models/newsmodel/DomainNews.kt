@@ -7,7 +7,7 @@ data class DomainNews (
     val id: Long = 0,
     val title: String,
     val content: String,
-    val previewImageUri: Uri?,
+    val previewImagePath: String?,
     val type: NewsType,
     val category: NewsCategory,
     val timeToRead: Int,

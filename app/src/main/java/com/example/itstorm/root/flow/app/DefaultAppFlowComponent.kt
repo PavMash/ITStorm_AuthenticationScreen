@@ -6,8 +6,8 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pushToFront
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.example.itstorm.core.domain.repositories.NewsRepository
-import com.example.itstorm.features.news.presentation.favorites.view.DefaultNewsFavoritesComponent
-import com.example.itstorm.features.news.presentation.news.view.DefaultNewsComponent
+import com.example.itstorm.features.favorites.presentation.view.DefaultNewsFavoritesComponent
+import com.example.itstorm.features.news.presentation.view.DefaultNewsComponent
 import com.example.itstorm.features.weather.presentation.view.DefaultWeatherComponent
 import com.example.itstorm.root.flow.app.AppFlowComponent.AppConfig
 
@@ -31,25 +31,29 @@ class DefaultAppFlowComponent(
         childContext: ComponentContext
     ) = when(config) {
         is AppConfig.Weather -> AppFlowComponent.Child.Weather(
-            DefaultWeatherComponent(
-                DefaultStoreFactory(),
-                childContext,
-                ::onNewsClicked,
-                ::onFavoritesClicked
+            component = DefaultWeatherComponent(
+                storeFactory = DefaultStoreFactory(),
+                componentContext = childContext,
+                onNewsClicked = ::onNewsClicked,
+                onFavoritesClicked = ::onFavoritesClicked
             )
         )
         is AppConfig.News -> AppFlowComponent.Child.News(
-            DefaultNewsComponent(
-                DefaultStoreFactory(),
+            component = DefaultNewsComponent(
+                storeFactory = DefaultStoreFactory(),
                 repository,
-                childContext
+                componentContext = childContext,
+                onWeatherClicked = ::onWeatherClicked,
+                onFavoritesClicked = ::onFavoritesClicked
             )
         )
         is AppConfig.Favorites -> AppFlowComponent.Child.Favorites(
-            DefaultNewsFavoritesComponent(
-                DefaultStoreFactory(),
+            component = DefaultNewsFavoritesComponent(
+                storeFactory = DefaultStoreFactory(),
                 repository,
-                childContext
+                componentContext = childContext,
+                onWeatherClicked = ::onWeatherClicked,
+                onNewsClicked = ::onNewsClicked
             )
         )
 
@@ -61,5 +65,9 @@ class DefaultAppFlowComponent(
 
     private fun onFavoritesClicked() {
         navigation.pushToFront(AppConfig.Favorites)
+    }
+
+    private fun onWeatherClicked() {
+        navigation.pushToFront(AppConfig.Weather)
     }
 }

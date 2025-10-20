@@ -1,5 +1,7 @@
 package com.example.itstorm.core.domain.repositories
 
+import android.content.Context
+import androidx.compose.ui.layout.ContentScale
 import com.example.itstorm.core.domain.models.newsmodel.DomainNews
 import kotlinx.coroutines.flow.Flow
 
@@ -8,9 +10,11 @@ interface NewsRepository {
 
     fun getFavoriteNews(): Flow<List<DomainNews>>
 
+    fun getNewsFlowById(id: Long): Flow<DomainNews>
+
     suspend fun getNewsById(id: Long): DomainNews?
 
-    suspend fun preloadNews(initialNews: List<DomainNews>)
+    suspend fun preloadNewsIfEmpty(context: Context)
 
     suspend fun updateFavoriteStatus(id: Long, isFavorite: Boolean)
 

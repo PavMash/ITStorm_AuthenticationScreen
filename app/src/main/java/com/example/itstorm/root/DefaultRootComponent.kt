@@ -15,6 +15,10 @@ import com.example.itstorm.features.authentication.presentation.DefaultAuthentic
 import com.example.itstorm.root.RootComponent.Config
 import com.example.itstorm.root.RootComponent.Child
 import com.example.itstorm.root.flow.app.DefaultAppFlowComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -27,7 +31,7 @@ class DefaultRootComponent(
         appContext,
         AppDataBase::class.java,
         "database"
-    ).build()
+    ).fallbackToDestructiveMigration(false).build()
     private val repository = NewsRepositoryImpl(db.newsDao())
 
     override val stack: Value<ChildStack<*, Child>> = childStack(
@@ -57,5 +61,12 @@ class DefaultRootComponent(
 
     private fun proceedToWeather() {
         navigation.pushToFront(Config.AppFlow)
+    }
+
+    override fun preloadNewsIfEmpty(context: Context) {
+        CoroutineScope(Dispatchers.IO).launch {
+            //db.clearAllTables() // for test purposes, remove later
+            repository.preloadNewsIfEmpty(context)
+        }
     }
 }

@@ -7,7 +7,7 @@ import com.example.itstorm.core.data.db.converters.Converters
 import com.example.itstorm.core.data.db.dao.NewsDao
 import com.example.itstorm.core.data.db.entities.NewsEntity
 
-@Database(entities = [NewsEntity::class], version = 1)
+@Database(entities = [NewsEntity::class], version = 3)
 @TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase() {
     abstract fun newsDao(): NewsDao

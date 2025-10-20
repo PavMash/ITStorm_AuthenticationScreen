@@ -1,7 +1,6 @@
 package com.example.itstorm.core.ui.mappers
 
 import com.example.itstorm.core.domain.models.newsmodel.DomainNews
-import com.example.itstorm.core.domain.models.newsmodel.NewsCategory
 import com.example.itstorm.core.domain.models.newsmodel.NewsType
 import com.example.itstorm.core.ui.models.UINews
 import java.time.Duration
@@ -11,9 +10,9 @@ fun DomainNews.toUI(): UINews = UINews(
     id = id,
     title = title,
     content = content,
-    previewImageUri = previewImageUri,
+    previewImagePath = previewImagePath,
     type = newsTypeToDisplay(type),
-    category = newsCategoryToDisplay(category),
+    category = category,
     timeToRead = formatTimeToRead(timeToRead),
     timeSinceCreation = formatTimeSinceCreation(createdAt),
     isRead = isRead,
@@ -24,13 +23,7 @@ private fun newsTypeToDisplay(type: NewsType): String =
     when(type) {
         (NewsType.Article) -> "Статья"
         (NewsType.Essay) -> "Эссе"
-    }
-
-private fun newsCategoryToDisplay(type: NewsCategory): String =
-    when(type) {
-        (NewsCategory.Technology) -> "Технологии"
-        (NewsCategory.Culture) -> "Культура"
-        (NewsCategory.Travel) -> "Путешествия"
+        (NewsType.Blog) -> "Блог"
     }
 
 private fun formatTimeToRead(time: Int): String =

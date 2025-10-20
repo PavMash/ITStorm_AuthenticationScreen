@@ -8,13 +8,6 @@ import com.example.itstorm.core.domain.models.newsmodel.NewsType
 import java.time.Instant
 
 class Converters {
-
-    @TypeConverter
-    fun uriToString(uri: Uri?): String? = uri?.toString()
-
-    @TypeConverter
-    fun stringToUri(str: String?): Uri? = str?.toUri()
-
     @TypeConverter
     fun instantToLong(instant: Instant?): Long? = instant?.toEpochMilli()
 

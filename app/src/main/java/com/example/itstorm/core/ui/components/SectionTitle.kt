@@ -11,9 +11,12 @@ import com.example.itstorm.core.ui.theme.GreyE5
 import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 
 @Composable
-fun SectionTitle(modifier: Modifier) {
+fun SectionTitle(
+    text: String,
+    modifier: Modifier = Modifier
+) {
     Text(
-        text = stringResource(R.string.weather_page_title),
+        text = text,
         fontFamily = robotoFlexFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 18.sp,

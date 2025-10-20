@@ -3,13 +3,11 @@ package com.example.itstorm.features.weather.presentation.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,8 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.itstorm.R
+import com.example.itstorm.core.ui.components.CustomHorizontalDivider
 import com.example.itstorm.core.ui.theme.Grey1A
-import com.example.itstorm.core.ui.theme.Grey34
 import com.example.itstorm.core.ui.theme.White
 import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 
@@ -34,7 +32,6 @@ fun EstimationCard(
 ) {
     Card(
         modifier = modifier,
-        //modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = Grey1A,
@@ -48,11 +45,7 @@ fun EstimationCard(
                 PaddingValues(bottom = 10.dp))
 
             if (!belongsToHistorySection) {
-                HorizontalDivider(
-                    modifier = Modifier.fillMaxWidth(),
-                    thickness = 1.dp,
-                    color = Grey34
-                )
+                CustomHorizontalDivider()
 
                 Spacer(modifier = Modifier.height(10.dp))
 
