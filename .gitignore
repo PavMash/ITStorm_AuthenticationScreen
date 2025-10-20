@@ -14,3 +14,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/build/generated/ksp/debug/kotlin
