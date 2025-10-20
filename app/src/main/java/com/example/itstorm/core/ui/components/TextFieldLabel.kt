@@ -1,4 +1,4 @@
-package com.example.itstorm.features.weather.presentation.components
+package com.example.itstorm.core.ui.components
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +14,7 @@ fun TextFieldLabel(label: String) {
         fontFamily = robotoFlexFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 16.sp,
+        lineHeight = 24.sp,
         color = Grey67
     )
 }

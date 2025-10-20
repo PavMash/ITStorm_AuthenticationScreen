@@ -3,7 +3,7 @@ package com.example.itstorm.root
 import android.content.Context
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.example.itstorm.features.authentication.presentation.AuthenticationComponent
+import com.example.itstorm.features.authentication.presentation.view.AuthenticationComponent
 import com.example.itstorm.root.flow.app.AppFlowComponent
 import kotlinx.serialization.Serializable
 

@@ -37,13 +37,12 @@ import com.example.itstorm.features.weather.domain.WeatherEstimation
 import com.example.itstorm.core.ui.theme.Black
 import com.example.itstorm.core.ui.theme.Grey2F
 import com.example.itstorm.core.ui.theme.GreyB2
-import com.example.itstorm.core.ui.theme.GreyE5
 import com.example.itstorm.core.ui.theme.ITStorm_AuthenticationScreenTheme
 import com.example.itstorm.core.ui.theme.robotoFlexFontFamily
 import com.example.itstorm.features.weather.domain.EstimationState
 import com.example.itstorm.features.weather.presentation.components.EstimationCard
 import com.example.itstorm.features.weather.presentation.components.EstimationTextField
-import com.example.itstorm.features.weather.presentation.components.MainButton
+import com.example.itstorm.core.ui.components.MainButton
 
 @Composable
 fun WeatherUI(component: WeatherComponent) {

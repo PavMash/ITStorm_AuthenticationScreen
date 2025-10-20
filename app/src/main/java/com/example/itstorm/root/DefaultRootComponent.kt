@@ -11,7 +11,7 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.example.itstorm.core.data.db.AppDataBase
 import com.example.itstorm.core.data.repositories.NewsRepositoryImpl
-import com.example.itstorm.features.authentication.presentation.DefaultAuthenticationComponent
+import com.example.itstorm.features.authentication.presentation.view.DefaultAuthenticationComponent
 import com.example.itstorm.root.RootComponent.Config
 import com.example.itstorm.root.RootComponent.Child
 import com.example.itstorm.root.flow.app.DefaultAppFlowComponent

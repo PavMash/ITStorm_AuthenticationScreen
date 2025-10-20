@@ -2,7 +2,7 @@ package com.example.itstorm.root
 
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.extensions.compose.stack.Children
-import com.example.itstorm.features.authentication.presentation.AuthenticationUI
+import com.example.itstorm.features.authentication.presentation.view.AuthenticationUI
 import com.example.itstorm.root.flow.app.AppFlowUI
 
 @Composable

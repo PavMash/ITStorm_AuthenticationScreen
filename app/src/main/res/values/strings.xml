@@ -20,12 +20,6 @@
     <string name="enter_button_text">ВОЙТИ</string>
     <string name="skip_authorization_button_text">Продолжить без авторизации</string>
 
-    <string name="not_cyrillic_letter">Логин пользователя должен быть на кириллице</string>
-    <string name="wrong_login">Неверный логин</string>
-    <string name="no_latin_letters_in_password">Пароль должен содержать хотя бы одну латинскую букву</string>
-    <string name="no_digits_in_password">Пароль должен содержать хотя бы одну цифру</string>
-    <string name="short_password">Пароль должен содержать не менее 6 символов</string>
-
     <!--Weather Screen-->
     <string name="city_textfield_label">Город</string>
     <string name="temperature_textfield_label">Температура (°С)</string>

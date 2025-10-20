@@ -4,6 +4,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.itstorm.core.ui.components.TextFieldLabel
 import com.example.itstorm.core.ui.theme.Black
 import com.example.itstorm.core.ui.theme.Grey34
 import com.example.itstorm.core.ui.theme.White
@@ -22,7 +23,8 @@ fun EstimationTextField(
         label = {
             TextFieldLabel(
                 label
-            )},
+            )
+        },
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Black,
             focusedContainerColor = Black,

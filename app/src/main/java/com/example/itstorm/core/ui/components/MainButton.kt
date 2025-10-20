@@ -1,4 +1,4 @@
-package com.example.itstorm.features.weather.presentation.components
+package com.example.itstorm.core.ui.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
