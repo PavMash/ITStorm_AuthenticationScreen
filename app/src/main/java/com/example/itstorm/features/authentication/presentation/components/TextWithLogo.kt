@@ -12,6 +12,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.itstorm.R
+import com.example.itstorm.core.ui.components.LogoImage
 import com.example.itstorm.core.ui.components.TitleText
 import com.example.itstorm.core.ui.theme.GreyE5
 
@@ -33,13 +34,6 @@ fun TextWithLogo(
             color = GreyE5
         )
 
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(R.raw.logo)
-                .decoderFactory(SvgDecoder.Factory())
-                .build(),
-            contentDescription = null,
-            modifier = Modifier.size(48.dp)
-        )
+        LogoImage(modifier = Modifier.size(48.dp))
     }
 }

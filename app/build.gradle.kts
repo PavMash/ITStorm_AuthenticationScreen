@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -62,10 +63,9 @@ dependencies {
     implementation(libs.essenty.lifecycle.coroutines)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("io.coil-kt:coil-svg:2.7.0")
-    
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
     ksp(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

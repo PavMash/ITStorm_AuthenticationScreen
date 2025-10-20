@@ -20,7 +20,6 @@ class MainActivity : ComponentActivity() {
         val rootComponent = DefaultRootComponent(
             rootContext,
             applicationContext)
-        rootComponent.preloadNewsIfEmpty(applicationContext)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(Color.Black.toArgb()),

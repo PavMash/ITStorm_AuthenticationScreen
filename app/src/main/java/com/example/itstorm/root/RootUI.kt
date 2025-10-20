@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.example.itstorm.features.authentication.presentation.view.AuthenticationUI
 import com.example.itstorm.root.flow.app.AppFlowUI
+import com.example.itstorm.root.splash.SplashUI
 
 @Composable
 fun RootUI(rootComponent: RootComponent) {
@@ -11,6 +12,7 @@ fun RootUI(rootComponent: RootComponent) {
         when(val instance = child.instance){
             is RootComponent.Child.Authentication -> AuthenticationUI(instance.component)
             is RootComponent.Child.AppFlow -> AppFlowUI(instance.component)
+            is RootComponent.Child.Splash -> SplashUI(instance.component)
         }
     }
 }
